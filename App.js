@@ -12,17 +12,29 @@ import SettingsScreen from './screens/SettingsScreen';
 import ReviewScreen from './screens/ReviewScreen';
 
 const MainNavigator = createBottomTabNavigator({
-  welcome: { screen: WelcomeScreen },
-  auth: { screen: AuthScreen },
+  welcome: { 
+    screen: WelcomeScreen,
+    navigationOptions: { tabBarVisible: false },
+  }, 
+  auth: { 
+    screen: AuthScreen, 
+    navigationOptions: { tabBarVisible: false },
+  },
   main: {
+    navigationOptions: { tabBarVisible: false },
     screen: createBottomTabNavigator({
       map: { screen: MapScreen },
       deck: { screen: DeckScreen },
       review: createStackNavigator({
         review: { screen: ReviewScreen },
         settings: { screen: SettingsScreen }
-      })
+      }) 
     })
+  }
+}, {
+  lazy: true,
+  navigationOptions: {
+    tabBarVisible: { visible: false }
   }
 }) 
 

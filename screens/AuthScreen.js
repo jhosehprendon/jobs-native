@@ -6,18 +6,31 @@ import * as actions from '../actions';
 class AuthScreen extends Component {
     componentDidMount() {
             this.props.facebookLogin()
+            this.onAuthComplete(this.props)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.onAuthComplete(nextProps) 
+    }
+
+    onAuthComplete(props){
+        if(props.token) {
+            this.props.navigation.navigate('map')
+        }
     }
 
     render() {
         return (
-            <View>
-                <Text>Auth Screen</Text>
-                <Text>Auth Screen</Text>
-                <Text>Auth Screen</Text>
-            </View>
+            <View />
         )
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        token: state.auth.token
+    }
+}
 
-export default connect(null, actions)(AuthScreen);
+
+export default connect(mapStateToProps, actions)(AuthScreen);
