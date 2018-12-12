@@ -21,8 +21,8 @@ import { FETCH_JOBS, LIKE_JOB } from './types';
 //     return `${JOB_ROOT_URL}${query}`
 // }
 
-export const fetchJobs = (callback) => {
-
+export const fetchJobs = (region, callback) => async (dispatch) => {
+    try {
       //let zip = await reverseGeoCode(region);
       //const url = buildJobsUrl(zip);
       //let { data } = await axios.get(url);
@@ -30,6 +30,9 @@ export const fetchJobs = (callback) => {
       //console.log(data);
       dispatch({ type: FETCH_JOBS, payload: data });
       callback();
+    } catch (e) {
+      console.log(e);
+    }
   };
 
 export const likeJob = (job) => {
