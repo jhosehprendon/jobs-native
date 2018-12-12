@@ -3,7 +3,7 @@
 // // import { Location } from 'expo';
 import JOB_DATA from './indeedJobData.json';
 
-import { FETCH_JOBS, LIKE_JOB } from './types';
+import { FETCH_JOBS, LIKE_JOB, CLEAR_LIKED_JOBS } from './types';
 
 // const JOB_ROOT_URL = 'https://jobs.github.com/positions.json?' 
 
@@ -39,5 +39,11 @@ export const likeJob = (job) => {
   return {
     payload: job,
     type: LIKE_JOB
+  }
+}
+
+export const clearLikedJobs = () => {
+  return {
+    type: CLEAR_LIKED_JOBS
   }
 }
