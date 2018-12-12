@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
 
@@ -25,10 +26,24 @@ const MainNavigator = createBottomTabNavigator({
     screen: createBottomTabNavigator({
       map: { screen: MapScreen },
       deck: { screen: DeckScreen },
-      review: createStackNavigator({
-        review: { screen: ReviewScreen },
-        settings: { screen: SettingsScreen }
-      }) 
+      review: {
+        screen: createStackNavigator({
+          review: { screen: ReviewScreen },
+          settings: { screen: SettingsScreen },
+        }),
+        navigationOptions: {
+          title: 'Review',
+          tabBarLabel: 'Review',
+          tabBarIcon: ({ tintColor }) => (
+            <Icon name="favorite" size={25} color={tintColor} />
+          )
+        }
+      } 
+    }, {
+      tabBarPosition: 'bottom',
+      tabBarOptions: {
+        labelStyle: { fontSize: 12 }
+      }
     })
   }
 }, {
