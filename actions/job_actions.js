@@ -3,7 +3,7 @@
 // // import { Location } from 'expo';
 import JOB_DATA from './indeedJobData.json';
 
-import { FETCH_JOBS } from './types';
+import { FETCH_JOBS, LIKE_JOB } from './types';
 
 // const JOB_ROOT_URL = 'https://jobs.github.com/positions.json?' 
 
@@ -21,8 +21,8 @@ import { FETCH_JOBS } from './types';
 //     return `${JOB_ROOT_URL}${query}`
 // }
 
-export const fetchJobs = (region, callback) => async (dispatch) => {
-    try {
+export const fetchJobs = (callback) => {
+
       //let zip = await reverseGeoCode(region);
       //const url = buildJobsUrl(zip);
       //let { data } = await axios.get(url);
@@ -30,7 +30,11 @@ export const fetchJobs = (region, callback) => async (dispatch) => {
       //console.log(data);
       dispatch({ type: FETCH_JOBS, payload: data });
       callback();
-    } catch (e) {
-      console.log(e);
-    }
   };
+
+export const likeJob = (job) => {
+  return {
+    payload: job,
+    type: LIKE_JOB
+  }
+}
